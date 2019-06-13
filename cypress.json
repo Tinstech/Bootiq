@@ -1,0 +1,6 @@
+{
+    "baseUrl": "http://frontend-bm.develop.cluster.ba.dev.biq.lan",
+    "integrationFolder": "cypress/e2e",
+    "viewportHeight": 1080,
+    "viewportWidth": 1920
+}
