@@ -1,6 +1,12 @@
 {
-    "baseUrl": "http://frontend-bm.develop.cluster.ba.dev.biq.lan",
     "integrationFolder": "cypress/e2e",
     "viewportHeight": 1080,
-    "viewportWidth": 1920
+    "viewportWidth": 1920,
+    "env" : {
+        "bookmall" : "http://frontend-bm.develop.cluster.ba.dev.biq.lan",
+        "bookmallSignup" : "http://middleware-bm.develop.cluster.ba.dev.biq.lan/api/v1/security/sign-up",
+        "NcdbDockerUrl" : "http://docker-01.alive.gts.biq.lan:8080",
+        "NcdbDockerUser" : "gts",
+        "NcdbDockerPassword" : "gts"
+    }
 }

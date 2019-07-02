@@ -1,5 +1,7 @@
 node_modules
 cypress/e2e/examples
+cypress/e2e/bookmall
+cypress/appObjects/bookmall
 cypress/videos
 cypress/screenshots
 package-lock.json
