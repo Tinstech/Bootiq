@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "isolatedModules": false,
+    "baseUrl": "../node_modules",
+    "target": "es5",
+    "lib": ["es5", "dom"],
+    "types": ["cypress"]
+  },
+  "include": ["**/*.ts", "support/index.js", "support/commands.ts"]
+}
