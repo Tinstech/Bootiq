@@ -1,5 +1,21 @@
-image: cypress/base:10
 cypress-e2e:
+  image: cypress/base:10
+  stage: deploy
+  variables:
+    SERVER: docker-01.alive.gts.biq.lan
+    PORT: 8081
+    DEPLOY_USER: gitlab
+  only:
+    - instance/biq-test
+  environment:
+    name: test
+    url: http://${SERVER}:${PORT}
+  before_script:
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+    - echo "$SSH_KEY_GITLAB" > ~/.ssh/id_ed25519
+    - chmod 600 ~/.ssh/id_ed25519
   script:
     - npm install
     - $(npm bin)/cypress run
