@@ -40,7 +40,7 @@ cypress-e2e:
     - $(npm bin)/cypress run --record
   artifacts:
     expire_in: 1 week
-    when: always
+    when: on_failure
     paths:
       - cypress/screenshots
       - cypress/videos
