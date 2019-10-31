@@ -1,5 +1,5 @@
 describe('Register user', () => {
-  beforeEach('preserve Cookies', () => {
+  beforeEach('preserve cookies', () => {
     Cypress.Cookies.preserveOnce(
       'JSESSIONID',
       'ncdb_locale',
@@ -13,15 +13,12 @@ describe('Register user', () => {
   it('log in, go to Dashboard', () => {
     cy.visit('http://docker-01.alive.gts.biq.lan:8080').loginGTS();
   });
-
   it('go to Create New Orders page', () => {
     cy.get('#shortcutButtonsBar')
       .find('a')
       .click()
-      .url()
-      .should('include', 'orders/orderCreate.jsf');
+      .pathEq('/pages/orders/orderCreate');
   });
-
   it('go to Action Selection page', () => {
     cy.get('#j_id_43\\:j_id_46\\:cardIssuerAutoComplete_input')
       .click()
@@ -29,32 +26,28 @@ describe('Register user', () => {
       .click({ force: true })
       .get('#j_id_43\\:j_id_4q')
       .click()
-      .url()
-      .should('include', 'orders/wizard/actionSelection');
+      .pathEq('/pages/orders/wizard/actionSelection');
   });
   it('go to Card Type Selection page', () => {
     cy.get('#j_id_55')
       .find('a')
       .eq(1)
       .click()
-      .url()
-      .should('include', 'orders/wizard/cardTypeSelection');
+      .pathEq('/pages/orders/wizard/cardTypeSelection');
   });
   it('go to Card Holder Selection page', () => {
     cy.get('#j_id_43')
       .find('a')
       .eq(0)
       .click()
-      .url()
-      .should('include', 'orders/wizard/cardHolderSelection');
+      .pathEq('/pages/orders/wizard/cardHolderSelection');
   });
   it('go to Card Owner form page', () => {
     cy.get('#j_id_43')
       .find('a')
       .eq(1)
       .click()
-      .url()
-      .should('include', 'cardOwners/cardOwnerForm');
+      .pathEq('/pages/cardOwners/cardOwnerForm');
   });
   it('fill in the form, go to Order Create Entries and Order Detail page', () => {
     cy.fixture('snoop_dogg.jpg', 'base64')
@@ -78,19 +71,16 @@ describe('Register user', () => {
     if (cy.get('#j_id_d3').should('have.attr', 'aria-hidden', 'false')) {
       cy.get('#j_id_d6\\:updateCardOwner')
         .click()
-        .url()
-        .should('include', 'orders/wizard/cardHolderSelection')
+        .pathEq('/pages/orders/wizard/cardHolderSelection')
         .get('#j_id_43')
         .find('a')
         .eq(0)
         .click();
     }
-    cy.url()
-      .should('include', 'orders/orderCreateEntries')
+    cy.pathEq('/pages/orders/orderCreateEntries')
       .get('#submitForm')
       .find('a')
       .click()
-      .url()
-      .should('include', 'orders/orderDetail');
+      .pathEq('/pages/orders/orderDetail');
   });
 });

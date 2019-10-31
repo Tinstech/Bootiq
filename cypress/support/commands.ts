@@ -10,8 +10,8 @@ declare global {
 }
 
 export const pathEq = (path: string) => {
-  cy.location({ timeout: 10000 }).should(loc => {
-    expect(loc.href).to.eq(Cypress.config().baseUrl + path);
+  cy.location({ timeout: 5000 }).should(loc => {
+    expect(loc.href).to.include(Cypress.config().baseUrl + path);
   });
 };
 

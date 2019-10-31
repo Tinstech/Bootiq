@@ -1,5 +1,46 @@
-image: cypress/base:10
-cypress-e2e:
+# first, install Cypress, then run all tests
+stages:
+  - build
+  - test
+
+# to cache both npm modules and Cypress binary we use environment variables
+# to point at the folders we can list as paths in "cache" job settings
+variables:
+  npm_config_cache: '$CI_PROJECT_DIR/.yarn'
+  CYPRESS_CACHE_FOLDER: '$CI_PROJECT_DIR/Caches/Cypress'
+
+# cache using branch name
+# https://gitlab.com/help/ci/caching/index.md
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - .yarn
+    - cache/Cypress
+    - node_modules
+
+# this job installs NPM dependencies and Cypress
+install:
+  image: cypress/base:10
+  stage: build
+
   script:
-    - npm install
-    - $(npm bin)/cypress run
+    - yarn install
+    # show where the Cypress test runner binaries are cached
+    - yarn cypress cache path
+    # show all installed versions of Cypress binary
+    - yarn cypress cache list
+    - yarn cypress verify
+
+# job that runs after "install" job finishes
+# NPM dependencies and Cypress binary should be already installed
+cypress-e2e:
+  image: cypress/base:10
+  stage: test
+  script:
+    - yarn cypress run --record
+  artifacts:
+    expire_in: 1 week
+    when: always
+    paths:
+      - cypress/screenshots
+      - cypress/videos
