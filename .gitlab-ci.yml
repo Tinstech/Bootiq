@@ -24,6 +24,7 @@ install:
   stage: build
 
   script:
+    - export CYPRESS_CACHE_FOLDER=cache/Cypress
     - yarn install
     # show where the Cypress test runner binaries are cached
     - yarn cypress cache path
