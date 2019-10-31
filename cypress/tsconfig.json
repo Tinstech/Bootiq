@@ -7,5 +7,5 @@
     "lib": ["es5", "dom"],
     "types": ["cypress"]
   },
-  "include": ["**/*.ts", "support/index.js", "support/commands.ts"]
+  "include": ["**/*.ts", "support/index.js"]
 }

@@ -1,3 +1,5 @@
+import Pages from '../../support/elements/Pages';
+
 describe('Register user', () => {
   beforeEach('preserve cookies', () => {
     Cypress.Cookies.preserveOnce(
@@ -11,13 +13,11 @@ describe('Register user', () => {
   });
 
   it('log in, go to Dashboard', () => {
-    cy.visit('http://docker-01.alive.gts.biq.lan:8080').loginGTS();
+    cy.visit('http://docker-01.alive.gts.biq.lan:8080');
+    Pages().logInPage.logInUser();
   });
   it('go to Create New Orders page', () => {
-    cy.get('#shortcutButtonsBar')
-      .find('a')
-      .click()
-      .pathEq('/pages/orders/orderCreate');
+    Pages().dashboardPage.goToCreateNewOrdersPage();
   });
   it('go to Action Selection page', () => {
     cy.get('#j_id_43\\:j_id_46\\:cardIssuerAutoComplete_input')

@@ -4,7 +4,6 @@ declare global {
   namespace Cypress {
     interface Chainable {
       pathEq: (path: string) => Chainable<boolean>;
-      loginGTS: () => Chainable<boolean>;
     }
   }
 }
@@ -15,16 +14,4 @@ export const pathEq = (path: string) => {
   });
 };
 
-export const loginGTS = () => {
-  cy.get('#j_username')
-    .type('gts')
-    .get('#j_password')
-    .type('gts')
-    .get('#j_id_1y')
-    .click()
-    .url()
-    .should('include', 'pages/dashboard');
-};
-
 Cypress.Commands.add('pathEq', pathEq);
-Cypress.Commands.add('loginGTS', loginGTS);
