@@ -10,11 +10,11 @@ describe('Register user', () => {
     cy.clearCookies();
   });
 
-  it('Log in, go to Dashboard', () => {
+  it('log in, go to Dashboard', () => {
     cy.visit('http://docker-01.alive.gts.biq.lan:8080').loginGTS();
   });
 
-  it('Go to Create New Order page', () => {
+  it('go to Create New Orders page', () => {
     cy.get('#shortcutButtonsBar')
       .find('a')
       .click()
@@ -56,7 +56,7 @@ describe('Register user', () => {
       .url()
       .should('include', 'cardOwners/cardOwnerForm');
   });
-  it('fill in the form, go to Order Create Entries page', () => {
+  it('fill in the form, go to Order Create Entries and Order Detail page', () => {
     cy.fixture('snoop_dogg.jpg', 'base64')
       .then(fileContent => {
         cy.get('#photoFileUpload_input').upload(
@@ -76,13 +76,21 @@ describe('Register user', () => {
       .contains('Save')
       .click();
     if (cy.get('#j_id_d3').should('have.attr', 'aria-hidden', 'false')) {
-      cy.get('#j_id_d6\\:updateCardOwner').click();
-      cy.url().should('include', 'orders/wizard/cardHolderSelection');
-      cy.get('#j_id_43')
+      cy.get('#j_id_d6\\:updateCardOwner')
+        .click()
+        .url()
+        .should('include', 'orders/wizard/cardHolderSelection')
+        .get('#j_id_43')
         .find('a')
         .eq(0)
         .click();
     }
-    cy.url().should('include', 'orders/orderCreateEntries');
+    cy.url()
+      .should('include', 'orders/orderCreateEntries')
+      .get('#submitForm')
+      .find('a')
+      .click()
+      .url()
+      .should('include', 'orders/orderDetail');
   });
 });
