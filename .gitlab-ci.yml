@@ -6,7 +6,7 @@ stages:
 # to cache both npm modules and Cypress binary we use environment variables
 # to point at the folders we can list as paths in "cache" job settings
 variables:
-  npm_config_cache: '$CI_PROJECT_DIR/.yarn'
+  npm_config_cache: '$CI_PROJECT_DIR/.npm'
   CYPRESS_CACHE_FOLDER: '$CI_PROJECT_DIR/Caches/Cypress'
 
 # cache using branch name
@@ -14,7 +14,7 @@ variables:
 cache:
   key: ${CI_COMMIT_REF_SLUG}
   paths:
-    - .yarn
+    - .npm
     - cache/Cypress
     - node_modules
 
@@ -24,12 +24,12 @@ install:
   stage: build
 
   script:
-    - yarn install
+    - npm ci
     # show where the Cypress test runner binaries are cached
-    - $(yarn bin)/cypress cache path
+    - $(npm bin)/cypress cache path
     # show all installed versions of Cypress binary
-    - $(yarn bin)/cypress cache list
-    - $(yarn bin)/cypress verify
+    - $(npm bin)/cypress cache list
+    - $(npm bin)/cypress verify
 
 # job that runs after "install" job finishes
 # NPM dependencies and Cypress binary should be already installed
@@ -37,7 +37,7 @@ cypress-e2e:
   image: cypress/base:10
   stage: test
   script:
-    - $(yarn bin)/cypress run --record
+    - $(npm bin)/cypress run --record
   artifacts:
     expire_in: 1 week
     when: always
