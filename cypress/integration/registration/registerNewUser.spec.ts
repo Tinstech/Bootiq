@@ -20,13 +20,7 @@ describe('Register user', () => {
     Pages().dashboardPage.goToCreateNewOrdersPage();
   });
   it('go to Action Selection page', () => {
-    cy.get('#j_id_43\\:j_id_46\\:cardIssuerAutoComplete_input')
-      .click()
-      .get('[data-item-value="2018"]')
-      .click({ force: true })
-      .get('#j_id_43\\:j_id_4q')
-      .click()
-      .pathEq('/pages/orders/wizard/actionSelection');
+    Pages().orderCreatePage.goToActionSelectionPage();
   });
   it('go to Card Type Selection page', () => {
     cy.get('#j_id_55')
