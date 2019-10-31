@@ -7,7 +7,7 @@ stages:
 # to point at the folders we can list as paths in "cache" job settings
 variables:
   npm_config_cache: '$CI_PROJECT_DIR/.npm'
-  CYPRESS_CACHE_FOLDER: '$CI_PROJECT_DIR/Caches/Cypress'
+  CYPRESS_CACHE_FOLDER: '$CI_PROJECT_DIR/cache/Cypress'
 
 # cache using branch name
 # https://gitlab.com/help/ci/caching/index.md
@@ -24,7 +24,7 @@ install:
   stage: build
 
   script:
-    - npm ci
+    - yarn install
     # show where the Cypress test runner binaries are cached
     - $(npm bin)/cypress cache path
     # show all installed versions of Cypress binary
@@ -37,7 +37,7 @@ cypress-e2e:
   image: cypress/base:10
   stage: test
   script:
-    - $(npm bin)/cypress run --record
+    - $(npm bin)/cypress run
   artifacts:
     expire_in: 1 week
     when: always
