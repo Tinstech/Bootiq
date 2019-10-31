@@ -37,7 +37,7 @@ cypress-e2e:
   image: cypress/base:10
   stage: test
   script:
-    - $(npm bin)/cypress run
+    - $(npm bin)/cypress run --record
   artifacts:
     expire_in: 1 week
     when: always
