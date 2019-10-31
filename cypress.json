@@ -1,6 +1,6 @@
 {
   "projectId": "izfxoe",
-  "video": true,
-  "screenshots": false,
+  "video": false,
+  "screenshots": true,
   "baseUrl": "http://docker-01.alive.gts.biq.lan:8080"
 }
