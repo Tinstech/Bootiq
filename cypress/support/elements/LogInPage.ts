@@ -14,7 +14,8 @@ const LogInPage = (): LogInPageProps => {
   const logInSubmitButton = () => {
     return cy.get('#j_id_1y');
   };
-  const USERCREDENTIAL = 'gts';
+
+  const USERCREDENTIAL = Cypress.env('NCDB_USER_CREDENTIAL');
 
   const logInUser = () => {
     userAccountInput().type(USERCREDENTIAL);

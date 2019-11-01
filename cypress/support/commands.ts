@@ -15,7 +15,7 @@ declare global {
 
 export const pathEq = (path: string) => {
   cy.location({ timeout: 5000 }).should(loc => {
-    expect(loc.href).to.include(Cypress.config().baseUrl + path);
+    expect(loc.href).to.include(Cypress.env('NCDB_BASE_URL') + path);
   });
 };
 
