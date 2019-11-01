@@ -1,26 +1,28 @@
 import routes from '../testRoutes';
 
-class LogInPage {
-  userAccountInput() {
-    return cy.get('#j_username');
-  }
-
-  USERCREDENTIAL = 'gts';
-
-  userPasswordInput() {
-    return cy.get('#j_password');
-  }
-
-  logInSubmitButton() {
-    return cy.get('#j_id_1y');
-  }
-
-  logInUser() {
-    this.userAccountInput().type(this.USERCREDENTIAL);
-    this.userPasswordInput().type(this.USERCREDENTIAL);
-    this.logInSubmitButton().click();
-    cy.pathEq(routes.dashboardPage);
-  }
+interface LogInPageProps {
+  logInUser: () => void;
 }
 
-export default LogInPage;
+const LogInPage = (): LogInPageProps => {
+  const userAccountInput = () => {
+    return cy.get('#j_username');
+  };
+  const userPasswordInput = () => {
+    return cy.get('#j_password');
+  };
+  const logInSubmitButton = () => {
+    return cy.get('#j_id_1y');
+  };
+  const USERCREDENTIAL = 'gts';
+
+  const logInUser = () => {
+    userAccountInput().type(USERCREDENTIAL);
+    userPasswordInput().type(USERCREDENTIAL);
+    logInSubmitButton().click();
+    cy.pathEq(routes.dashboardPage);
+  };
+  return { logInUser };
+};
+
+export { LogInPage };

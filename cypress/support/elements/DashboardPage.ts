@@ -1,14 +1,19 @@
 import routes from '../testRoutes';
 
-class DashboardPage {
-  orderCreateButton() {
-    return cy.get('#shortcutButtonsBar').find('a');
-  }
-
-  goToCreateNewOrdersPage() {
-    this.orderCreateButton().click();
-    cy.pathEq(routes.orderCreatePage);
-  }
+interface DashboardPageProps {
+  goToCreateNewOrdersPage: () => void;
 }
 
-export default DashboardPage;
+const DashboardPage = (): DashboardPageProps => {
+  const orderCreateButton = () => {
+    return cy.get('#shortcutButtonsBar').find('a');
+  };
+
+  const goToCreateNewOrdersPage = () => {
+    orderCreateButton().click();
+    cy.pathEq(routes.orderCreatePage);
+  };
+  return { goToCreateNewOrdersPage };
+};
+
+export { DashboardPage };
