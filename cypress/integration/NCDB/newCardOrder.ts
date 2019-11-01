@@ -9,7 +9,7 @@ import {
   OrderCreatePage
 } from '../../support/elements';
 
-describe('Register user', () => {
+describe('New ISIC card order', () => {
   beforeEach('preserve cookies', () => {
     Cypress.Cookies.preserveOnce(
       'JSESSIONID',
