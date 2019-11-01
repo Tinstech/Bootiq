@@ -22,7 +22,7 @@ describe('New ISIC card order', () => {
   });
 
   it('log in, go to Dashboard', () => {
-    cy.visit('http://docker-01.alive.gts.biq.lan:8080');
+    cy.visit(Cypress.env('NCDB_BASE_URL'));
     LogInPage().logInUser();
   });
   it('go to Create New Orders page', () => {

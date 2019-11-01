@@ -12,3 +12,6 @@ cypress/screenshots
 
 yarn-debug.log*
 yarn-error.log*
+
+#cypress env
+cypress.env.json
