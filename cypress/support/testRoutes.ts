@@ -6,5 +6,6 @@ export default {
   cardHolderSelectionPage: '/pages/orders/wizard/cardHolderSelection',
   cardOwnerFormPage: '/pages/cardOwners/cardOwnerForm',
   orderCreateEntriesPage: '/pages/orders/orderCreateEntries',
-  orderDetailPage: '/pages/orders/orderDetail'
+  orderDetailPage: '/pages/orders/orderDetail',
+  orderPage: '/pages/orders/orderList.jsf'
 };

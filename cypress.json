@@ -1,5 +1,7 @@
 {
   "projectId": "izfxoe",
   "video": false,
-  "screenshots": true
+  "screenshots": true,
+  "viewportHeight": 800,
+  "viewportWidth": 1280
 }
