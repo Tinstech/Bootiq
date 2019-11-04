@@ -34,7 +34,7 @@ const OrderCreateEntriesPage = (): OrderCreateEntriesPageProps => {
   };
 
   const goToOrderDetailPage = () => {
-    cardSelectedEntriesButton().click();
+    cardSelectedEntriesButton().click({ force: true });
     cy.pathEq(routes.orderDetailPage);
   };
 
