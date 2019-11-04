@@ -10,7 +10,7 @@ const OrderDetailPage = (): OrderDetailPageProps => {
     return cy.get('#filter-form\\:surname');
   };
   const filterDateOfBirthInput = () => {
-    return cy.get('#filter-form:\\birthDate_input');
+    return cy.get('#filter-form\\:birthDate_input');
   };
 
   const filterButton = () => {
