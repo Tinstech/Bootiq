@@ -6,8 +6,10 @@ import {
   DashboardPage,
   LogInPage,
   OrderCreateEntriesPage,
-  OrderCreatePage
+  OrderCreatePage,
+  OrderPage
 } from '../../support/elements';
+import routes from '../../support/testRoutes';
 
 describe('New ISIC card order', () => {
   beforeEach('preserve cookies', () => {
@@ -17,7 +19,9 @@ describe('New ISIC card order', () => {
       'oam.Flash.RENDERMAP.TOKEN'
     );
   });
-  after('clear all cookies', () => {
+  after('', () => {
+    cy.visit(`${Cypress.env('NCDB_BASE_URL')}${routes.orderPage}`);
+    OrderPage().deleteOrderAndCardHolder();
     cy.clearCookies();
   });
 
@@ -43,10 +47,12 @@ describe('New ISIC card order', () => {
   it('fill in the form, go to Order Create Entries page', () => {
     cy.uploadFile('snoop_dogg.jpg', '#photoFileUpload_input', 'image/jpg');
     CardOwnerFormPage().fillInAndSubmitForm();
-    CardOwnerFormPage().submitExistingUserModalDialog();
+    // CardOwnerFormPage().submitExistingUserModalDialog();
     CardOwnerFormPage().checkPathIsOrderCreateEntries();
   });
-  it('go to Order Detail page', () => {
+  it('filter & select Tested Item, go to Order Detail page', () => {
+    OrderCreateEntriesPage().filterTestedItem();
+    OrderCreateEntriesPage().selectFilteredItem();
     OrderCreateEntriesPage().goToOrderDetailPage();
   });
 });
