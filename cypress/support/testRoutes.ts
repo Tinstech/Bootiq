@@ -7,5 +7,6 @@ export default {
   cardOwnerFormPage: '/pages/cardOwners/cardOwnerForm',
   orderCreateEntriesPage: '/pages/orders/orderCreateEntries',
   orderDetailPage: '/pages/orders/orderDetail',
-  orderPage: '/pages/orders/orderList.jsf'
+  orderPage: '/pages/orders/orderList.jsf',
+  loginPage: '/login.jsf'
 };

@@ -6,6 +6,7 @@ interface CardOwnerFormPageProps {
   fillInAndSubmitForm: () => void;
   submitExistingUserModalDialog: () => void;
   checkPathIsOrderCreateEntries: () => void;
+  generateRandomUsername: () => void;
 }
 
 const CardOwnerFormPage = (): CardOwnerFormPageProps => {
@@ -31,8 +32,17 @@ const CardOwnerFormPage = (): CardOwnerFormPageProps => {
     return cy.get('#j_id_d6\\:updateCardOwner');
   };
 
+  const generateRandomUsername = () => {
+    let text = '';
+    const possible = 'abcdefghijklmnopqrstuvwxyz';
+    for (var i = 0; i < 5; i++)
+      text += possible.charAt(Cypress._.floor(Math.random() * possible.length));
+    console.log('RANDOM_USER_NAME', `Cypress${text}`);
+    return `Cypress${text}`;
+  };
+
   const fillInAndSubmitForm = () => {
-    nameInput().type('Cypress');
+    nameInput().type(generateRandomUsername());
     surnnameInput().type('Test');
     birthDateInput().type('29.05.1988');
     organizationNameInput().type('Cypress Testing');
@@ -53,7 +63,8 @@ const CardOwnerFormPage = (): CardOwnerFormPageProps => {
   return {
     fillInAndSubmitForm,
     submitExistingUserModalDialog,
-    checkPathIsOrderCreateEntries
+    checkPathIsOrderCreateEntries,
+    generateRandomUsername
   };
 };
 
