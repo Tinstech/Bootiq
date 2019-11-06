@@ -7,4 +7,4 @@ export { LogInPage } from './LogInPage';
 export { OrderCreateEntriesPage } from './OrderCreateEntriesPage';
 export { OrderCreatePage } from './OrderCreatePage';
 export { OrderDetailPage } from './OrderDetailPage';
-export { OrderPage } from './OrderPage';
+export { OrderListPage } from './OrderListPage';

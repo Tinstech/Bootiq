@@ -1,7 +1,6 @@
-import routes from '../testRoutes';
-
 interface LogInPageProps {
-  logInUser: () => void;
+  logInERUser: () => void;
+  logInPCUser: () => void;
 }
 
 const LogInPage = (): LogInPageProps => {
@@ -15,15 +14,17 @@ const LogInPage = (): LogInPageProps => {
     return cy.get('#j_id_1y');
   };
 
-  const USERCREDENTIAL = Cypress.env('NCDB_USER_CREDENTIAL');
+  const USER_ER_CREDENTIAL = Cypress.env('NCDB_USER_ER_CREDENTIAL');
+  const USER_PC_CREDENTIAL = Cypress.env('NCDB_USER_PC_CREDENTIAL');
 
-  const logInUser = () => {
-    userAccountInput().type(USERCREDENTIAL);
-    userPasswordInput().type(USERCREDENTIAL);
-    logInSubmitButton().click();
-    cy.pathEq(routes.dashboardPage);
+  const logInERUser = () => {
+    cy.logInUser(USER_ER_CREDENTIAL);
   };
-  return { logInUser };
+
+  const logInPCUser = () => {
+    cy.logInUser(USER_PC_CREDENTIAL);
+  };
+  return { logInERUser, logInPCUser };
 };
 
 export { LogInPage };

@@ -2,6 +2,7 @@ import routes from '../testRoutes';
 
 interface DashboardPageProps {
   goToCreateNewOrdersPage: () => void;
+  openOrderListPage: () => void;
 }
 
 const DashboardPage = (): DashboardPageProps => {
@@ -13,7 +14,20 @@ const DashboardPage = (): DashboardPageProps => {
     orderCreateButton().click();
     cy.pathEq(routes.orderCreatePage);
   };
-  return { goToCreateNewOrdersPage };
+
+  const openOrderListPage = () => {
+    cy.get('#main-nav')
+      .find('a[href="/pages/orders/orderList.jsf"]')
+      .eq(0)
+      .click()
+      .get('#main-nav')
+      .find('a[href="/pages/orders/orderList.jsf"]')
+      .eq(1)
+      .click()
+      .pathEq(routes.orderListPage);
+  };
+
+  return { goToCreateNewOrdersPage, openOrderListPage };
 };
 
 export { DashboardPage };
