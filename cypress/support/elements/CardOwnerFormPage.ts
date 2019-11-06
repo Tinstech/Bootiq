@@ -37,7 +37,6 @@ const CardOwnerFormPage = (): CardOwnerFormPageProps => {
     const possible = 'abcdefghijklmnopqrstuvwxyz';
     for (var i = 0; i < 5; i++)
       text += possible.charAt(Cypress._.floor(Math.random() * possible.length));
-    console.log('RANDOM_USER_NAME', `Cypress${text}`);
     return `Cypress${text}`;
   };
 

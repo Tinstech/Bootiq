@@ -10,6 +10,7 @@ declare global {
         input: string,
         mimeType: string
       ) => Chainable<boolean>;
+      logInUser: (usercredential: string) => Chainable<boolean>;
       signOut: () => Chainable<boolean>;
     }
   }
@@ -34,6 +35,16 @@ export const uploadFile = (
   });
 };
 
+export const logInUser = (usercredential: string) => {
+  cy.get('#j_username')
+    .type(usercredential)
+    .get('#j_password')
+    .type(usercredential)
+    .get('#j_id_1y')
+    .click()
+    .pathEq(routes.dashboardPage);
+};
+
 export const signOut = () => {
   cy.get('#profile-links')
     .find('a')
@@ -44,3 +55,4 @@ export const signOut = () => {
 Cypress.Commands.add('pathEq', pathEq);
 Cypress.Commands.add('uploadFile', uploadFile);
 Cypress.Commands.add('signOut', signOut);
+Cypress.Commands.add('logInUser', logInUser);
