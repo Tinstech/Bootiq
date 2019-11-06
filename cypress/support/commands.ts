@@ -1,4 +1,5 @@
 import 'cypress-file-upload';
+import routes from './testRoutes';
 
 declare global {
   namespace Cypress {
@@ -9,6 +10,7 @@ declare global {
         input: string,
         mimeType: string
       ) => Chainable<boolean>;
+      signOut: () => Chainable<boolean>;
     }
   }
 }
@@ -32,5 +34,13 @@ export const uploadFile = (
   });
 };
 
+export const signOut = () => {
+  cy.get('#profile-links')
+    .find('a')
+    .click({ force: true })
+    .pathEq(routes.loginPage);
+};
+
 Cypress.Commands.add('pathEq', pathEq);
 Cypress.Commands.add('uploadFile', uploadFile);
+Cypress.Commands.add('signOut', signOut);

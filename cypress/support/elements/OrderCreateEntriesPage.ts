@@ -7,9 +7,6 @@ interface OrderCreateEntriesPageProps {
 }
 
 const OrderCreateEntriesPage = (): OrderCreateEntriesPageProps => {
-  const filterNameInput = () => {
-    return cy.get('#filter-form\\:name');
-  };
   const filterSurnameInput = () => {
     return cy.get('#filter-form\\:surname');
   };
@@ -55,7 +52,6 @@ const OrderCreateEntriesPage = (): OrderCreateEntriesPageProps => {
   };
 
   const filterTestedItem = () => {
-    filterNameInput().type('Cypress');
     filterDateOfBirthInput().type('29.5.1988');
     filterSurnameInput().type('Test');
     filterButton().click();

@@ -21,8 +21,8 @@ describe('New ISIC card order', () => {
   });
   after('', () => {
     cy.visit(`${Cypress.env('NCDB_BASE_URL')}${routes.orderPage}`);
-    OrderPage().deleteOrderAndCardHolder();
-    cy.clearCookies();
+    OrderPage().deleteLastOrderAndCardHolder();
+    cy.clearCookies().signOut();
   });
 
   it('log in, go to Dashboard', () => {
@@ -47,7 +47,6 @@ describe('New ISIC card order', () => {
   it('fill in the form, go to Order Create Entries page', () => {
     cy.uploadFile('snoop_dogg.jpg', '#photoFileUpload_input', 'image/jpg');
     CardOwnerFormPage().fillInAndSubmitForm();
-    // CardOwnerFormPage().submitExistingUserModalDialog();
     CardOwnerFormPage().checkPathIsOrderCreateEntries();
   });
   it('filter & select Tested Item, go to Order Detail page', () => {

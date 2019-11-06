@@ -1,20 +1,20 @@
 interface OrderPageProps {
-  deleteOrderAndCardHolder: () => void;
+  deleteLastOrderAndCardHolder: () => void;
 }
 
 const OrderPage = (): OrderPageProps => {
-  const deleteOrderButton = () => {
+  const deleteLastOrderButton = () => {
     return cy.get('#j_id_8e\\:orderList\\:0\\:deleteButton');
   };
-  const deleteOrderAndCardHolderButton = () => {
-    return cy.get('#orderDeleteDialogForm\\:j_id_a4');
+  const deleteLastOrderAndCardHolderButton = () => {
+    return cy.get('#orderDeleteDialogForm\\:j_id_a4').find('span');
   };
 
-  const deleteOrderAndCardHolder = () => {
-    deleteOrderButton().click();
-    deleteOrderAndCardHolderButton().click();
+  const deleteLastOrderAndCardHolder = () => {
+    deleteLastOrderButton().click();
+    deleteLastOrderAndCardHolderButton().click({ force: true });
   };
-  return { deleteOrderAndCardHolder };
+  return { deleteLastOrderAndCardHolder };
 };
 
 export { OrderPage };
