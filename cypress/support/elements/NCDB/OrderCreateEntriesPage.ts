@@ -1,4 +1,4 @@
-import routes from '../testRoutes';
+import routes from '../../testRoutes';
 
 interface OrderCreateEntriesPageProps {
   goToOrderDetailPage: () => void;
@@ -32,7 +32,7 @@ const OrderCreateEntriesPage = (): OrderCreateEntriesPageProps => {
 
   const goToOrderDetailPage = () => {
     cardSelectedEntriesButton().click({ force: true });
-    cy.pathEq(routes.orderDetailPage);
+    cy.pathEq(Cypress.env('NCDB_BASE_URL'), routes.orderDetailPage);
   };
 
   const checkEntriesTableContainsTestedItem = () => {

@@ -1,4 +1,4 @@
-import routes from '../testRoutes';
+import routes from '../../testRoutes';
 
 interface DashboardPageProps {
   goToCreateNewOrdersPage: () => void;
@@ -12,7 +12,7 @@ const DashboardPage = (): DashboardPageProps => {
 
   const goToCreateNewOrdersPage = () => {
     orderCreateButton().click();
-    cy.pathEq(routes.orderCreatePage);
+    cy.pathEq(Cypress.env('NCDB_BASE_URL'), routes.orderCreatePage);
   };
 
   const openOrderListPage = () => {
@@ -24,7 +24,7 @@ const DashboardPage = (): DashboardPageProps => {
       .find('a[href="/pages/orders/orderList.jsf"]')
       .eq(1)
       .click()
-      .pathEq(routes.orderListPage);
+      .pathEq(Cypress.env('NCDB_BASE_URL'), routes.orderListPage);
   };
 
   return { goToCreateNewOrdersPage, openOrderListPage };

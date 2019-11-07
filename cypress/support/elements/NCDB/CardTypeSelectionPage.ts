@@ -1,4 +1,4 @@
-import routes from '../testRoutes';
+import routes from '../../testRoutes';
 
 interface CardTypeSelectionPageProps {
   goToCardHolderSelectionPage: () => void;
@@ -13,7 +13,7 @@ const CardTypeSelectionPage = (): CardTypeSelectionPageProps => {
   };
   const goToCardHolderSelectionPage = () => {
     chooseISICCardButton().click();
-    cy.pathEq(routes.cardHolderSelectionPage);
+    cy.pathEq(Cypress.env('NCDB_BASE_URL'), routes.cardHolderSelectionPage);
   };
   return { goToCardHolderSelectionPage };
 };

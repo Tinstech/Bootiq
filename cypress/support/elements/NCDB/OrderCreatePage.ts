@@ -1,4 +1,4 @@
-import routes from '../testRoutes';
+import routes from '../../testRoutes';
 
 interface OrderCreatePageProps {
   goToActionSelectionPage: () => void;
@@ -19,7 +19,7 @@ const OrderCreatePage = (): OrderCreatePageProps => {
     cardIssuerInput().type('Online ordering');
     onlineOrderingOption().click({ force: true });
     cardIssuerSubmitButton().click();
-    cy.pathEq(routes.actionSelectionPage);
+    cy.pathEq(Cypress.env('NCDB_BASE_URL'), routes.actionSelectionPage);
   };
   return { goToActionSelectionPage };
 };
