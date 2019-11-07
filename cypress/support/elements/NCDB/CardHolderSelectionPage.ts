@@ -1,4 +1,4 @@
-import routes from '../testRoutes';
+import routes from '../../testRoutes';
 
 interface CardHolderSelectionPageProps {
   goToCardOwnerFormPage: () => void;
@@ -21,7 +21,7 @@ const CardHolderSelectionPage = (): CardHolderSelectionPageProps => {
   };
   const goToCardOwnerFormPage = () => {
     createNewCardHolderButton().click();
-    cy.pathEq(routes.cardOwnerFormPage);
+    cy.pathEq(Cypress.env('NCDB_BASE_URL'), routes.cardOwnerFormPage);
   };
   const chooseExistingCardHolder = () => {
     chooseExistingCardHolderButton().click();

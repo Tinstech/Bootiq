@@ -1,4 +1,4 @@
-import routes from '../testRoutes';
+import routes from '../../testRoutes';
 
 interface OrderListPageProps {
   deleteLastOrderAndCardHolder: () => void;
@@ -29,7 +29,7 @@ const OrderListPage = (): OrderListPageProps => {
 
   const openNewestOrderDetail = () => {
     newestOrderDetail().click();
-    cy.pathEq(routes.orderDetailPage);
+    cy.pathEq(Cypress.env('NCDB_BASE_URL'), routes.orderDetailPage);
   };
   return { deleteLastOrderAndCardHolder, openNewestOrderDetail };
 };

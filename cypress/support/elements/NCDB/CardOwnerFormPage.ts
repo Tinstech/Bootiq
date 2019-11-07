@@ -1,6 +1,5 @@
-// import Pages from './Pages';
-import { CardHolderSelectionPage } from '../../support/elements';
-import routes from '../testRoutes';
+import routes from '../../testRoutes';
+import { CardHolderSelectionPage } from './CardHolderSelectionPage';
 
 interface CardOwnerFormPageProps {
   fillInAndSubmitForm: () => void;
@@ -51,13 +50,13 @@ const CardOwnerFormPage = (): CardOwnerFormPageProps => {
   const submitExistingUserModalDialog = () => {
     if (existingUserModalDialogIsVisible()) {
       updateCardOwnerButton().click();
-      cy.pathEq(routes.cardHolderSelectionPage);
+      cy.pathEq(Cypress.env('NCDB_BASE_URL'), routes.cardHolderSelectionPage);
       CardHolderSelectionPage().chooseExistingCardHolder();
     }
   };
 
   const checkPathIsOrderCreateEntries = () => {
-    cy.pathEq(routes.orderCreateEntriesPage);
+    cy.pathEq(Cypress.env('NCDB_BASE_URL'), routes.orderCreateEntriesPage);
   };
   return {
     fillInAndSubmitForm,

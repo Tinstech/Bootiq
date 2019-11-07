@@ -4,21 +4,25 @@ import routes from './testRoutes';
 declare global {
   namespace Cypress {
     interface Chainable {
-      pathEq: (path: string) => Chainable<boolean>;
+      pathEq: (productURL: string, path: string) => Chainable<boolean>;
       uploadFile: (
         filename: string,
         input: string,
         mimeType: string
       ) => Chainable<boolean>;
-      logInUser: (usercredential: string) => Chainable<boolean>;
-      signOut: () => Chainable<boolean>;
+      logInUser: (
+        productURL: string,
+        usercredential: string
+      ) => Chainable<boolean>;
+      signOut: (productURL: string) => Chainable<boolean>;
     }
   }
 }
 
-export const pathEq = (path: string) => {
+export const pathEq = (productURL: string, path: string) => {
   cy.location({ timeout: 5000 }).should(loc => {
-    expect(loc.href).to.include(Cypress.env('NCDB_BASE_URL') + path);
+    // expect(loc.href).to.include(Cypress.env('NCDB_BASE_URL') + path);
+    expect(loc.href).to.include(productURL + path);
   });
 };
 
@@ -35,21 +39,21 @@ export const uploadFile = (
   });
 };
 
-export const logInUser = (usercredential: string) => {
+export const logInUser = (productURL: string, usercredential: string) => {
   cy.get('#j_username')
     .type(usercredential)
     .get('#j_password')
     .type(usercredential)
     .get('#j_id_1y')
     .click()
-    .pathEq(routes.dashboardPage);
+    .pathEq(productURL, routes.dashboardPage);
 };
 
-export const signOut = () => {
+export const signOut = (productURL: string) => {
   cy.get('#profile-links')
     .find('a')
     .click({ force: true })
-    .pathEq(routes.loginPage);
+    .pathEq(productURL, routes.loginPage);
 };
 
 Cypress.Commands.add('pathEq', pathEq);

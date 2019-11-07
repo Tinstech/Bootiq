@@ -9,7 +9,7 @@ import {
   OrderCreatePage,
   OrderDetailPage,
   OrderListPage
-} from '../../support/elements';
+} from '../../support/elements/NCDB';
 
 describe('New ISIC card order', () => {
   beforeEach('preserve cookies', () => {
@@ -20,7 +20,7 @@ describe('New ISIC card order', () => {
     );
   });
   after('', () => {
-    cy.clearCookies().signOut();
+    cy.clearCookies().signOut(Cypress.env('NCDB_BASE_URL'));
   });
   context('Log in as NCDB user and proceed to new Card owner form', () => {
     it('log in, go to Dashboard', () => {
@@ -58,7 +58,7 @@ describe('New ISIC card order', () => {
       OrderDetailPage().checkOrderHistoryTabHasOrderedStatus();
       OrderDetailPage().markPhotosAsAdjusted();
       OrderDetailPage().prepareOrderForProcessing();
-      cy.signOut();
+      cy.signOut(Cypress.env('NCDB_BASE_URL'));
     });
   });
   context('Process order as Personalization center user ', () => {

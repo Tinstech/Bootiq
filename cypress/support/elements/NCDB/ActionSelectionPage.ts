@@ -1,4 +1,4 @@
-import routes from '../testRoutes';
+import routes from '../../testRoutes';
 
 interface ActionSelectionPageProps {
   goToCardTypeSelectionPage: () => void;
@@ -14,7 +14,7 @@ const ActionSelectionPage = (): ActionSelectionPageProps => {
 
   const goToCardTypeSelectionPage = () => {
     orderNewPlasticCardButton().click();
-    cy.pathEq(routes.cardTypeSelectionPage);
+    cy.pathEq(Cypress.env('NCDB_BASE_URL'), routes.cardTypeSelectionPage);
   };
 
   return { goToCardTypeSelectionPage };
