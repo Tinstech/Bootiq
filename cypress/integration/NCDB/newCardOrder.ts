@@ -13,11 +13,7 @@ import {
 
 describe('New ISIC card order', () => {
   beforeEach('preserve cookies', () => {
-    Cypress.Cookies.preserveOnce(
-      'JSESSIONID',
-      'ncdb_locale',
-      'oam.Flash.RENDERMAP.TOKEN'
-    );
+    Cypress.Cookies.preserveOnce('JSESSIONID', 'ncdb_locale');
   });
   after('', () => {
     cy.clearCookies().signOut(Cypress.env('NCDB_BASE_URL'));

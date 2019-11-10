@@ -37,7 +37,13 @@ cypress-e2e:
   image: cypress/base:10
   stage: test
   script:
-    - $(npm bin)/cypress run --record
+    # the free cypress record limit is 500 recorded tests per month
+    # if we upgrade our billing plan to 99$/month we can implement
+    # test recording at cypess dashboard use several parallel runs
+    # to run tests with recording use:
+    # - $(npm bin)/cypress run --record
+    # record key for this project is: 974ddd92-4fbd-4a3e-9b1e-67ee7e0ab426
+    - $(npm bin)/cypress run
   artifacts:
     expire_in: 1 week
     when: on_failure
