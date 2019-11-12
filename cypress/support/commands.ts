@@ -8,11 +8,11 @@ declare global {
       uploadFile: (
         filename: string,
         input: string,
-        mimeType: string
+        mimeType: string,
       ) => Chainable<boolean>;
       logInUser: (
         productURL: string,
-        usercredential: string
+        usercredential: string,
       ) => Chainable<boolean>;
       signOut: (productURL: string) => Chainable<boolean>;
     }
@@ -28,12 +28,12 @@ export const pathEq = (productURL: string, path: string) => {
 export const uploadFile = (
   filename: string,
   input: string,
-  mimeType: string
+  mimeType: string,
 ) => {
   cy.fixture(filename, 'base64').then(fileContent => {
     cy.get(input).upload(
       { fileContent, fileName: filename, mimeType: mimeType },
-      { subjectType: 'input' }
+      { subjectType: 'input' },
     );
   });
 };

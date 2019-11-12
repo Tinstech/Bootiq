@@ -6,7 +6,6 @@ interface CardOwnerFormPageProps {
   fillInAndSubmitForm: () => void;
   submitExistingUserModalDialog: () => void;
   checkPathIsOrderCreateEntries: () => void;
-  generateRandomUsername: () => void;
 }
 
 const CardOwnerFormPage = (): CardOwnerFormPageProps => {
@@ -56,7 +55,6 @@ const CardOwnerFormPage = (): CardOwnerFormPageProps => {
     fillInAndSubmitForm,
     submitExistingUserModalDialog,
     checkPathIsOrderCreateEntries,
-    generateRandomUsername
   };
 };
 

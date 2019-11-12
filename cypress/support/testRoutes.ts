@@ -11,5 +11,6 @@ export default {
   loginPage: '/login.jsf',
   personalDataPage: '/ordering/personal-data',
   additionalProductsPage: '/ordering/additional-products',
-  overviewPage: '/ordering/overview'
+  overviewPage: '/ordering/overview',
+  orderCreateInsuranceEntries: '/pages/orders/orderCreateInsuranceEntries',
 };
