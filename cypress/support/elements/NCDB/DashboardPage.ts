@@ -31,3 +31,4 @@ const DashboardPage = (): DashboardPageProps => {
 };
 
 export { DashboardPage };
+

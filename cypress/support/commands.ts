@@ -21,7 +21,6 @@ declare global {
 
 export const pathEq = (productURL: string, path: string) => {
   cy.location({ timeout: 5000 }).should(loc => {
-    // expect(loc.href).to.include(Cypress.env('NCDB_BASE_URL') + path);
     expect(loc.href).to.include(productURL + path);
   });
 };
@@ -54,6 +53,14 @@ export const signOut = (productURL: string) => {
     .find('a')
     .click({ force: true })
     .pathEq(productURL, routes.loginPage);
+};
+
+export const generateRandomUsername = () => {
+  let text = '';
+  const possible = 'abcdefghijklmnopqrstuvwxyz';
+  for (var i = 0; i < 5; i++)
+    text += possible.charAt(Cypress._.floor(Math.random() * possible.length));
+  return `Cypress${text}`;
 };
 
 Cypress.Commands.add('pathEq', pathEq);

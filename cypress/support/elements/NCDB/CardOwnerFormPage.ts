@@ -1,3 +1,4 @@
+import { generateRandomUsername } from '../../commands';
 import routes from '../../testRoutes';
 import { CardHolderSelectionPage } from './CardHolderSelectionPage';
 
@@ -31,14 +32,6 @@ const CardOwnerFormPage = (): CardOwnerFormPageProps => {
     return cy.get('#j_id_d6\\:updateCardOwner');
   };
 
-  const generateRandomUsername = () => {
-    let text = '';
-    const possible = 'abcdefghijklmnopqrstuvwxyz';
-    for (var i = 0; i < 5; i++)
-      text += possible.charAt(Cypress._.floor(Math.random() * possible.length));
-    return `Cypress${text}`;
-  };
-
   const fillInAndSubmitForm = () => {
     nameInput().type(generateRandomUsername());
     surnnameInput().type('Test');
@@ -58,6 +51,7 @@ const CardOwnerFormPage = (): CardOwnerFormPageProps => {
   const checkPathIsOrderCreateEntries = () => {
     cy.pathEq(Cypress.env('NCDB_BASE_URL'), routes.orderCreateEntriesPage);
   };
+
   return {
     fillInAndSubmitForm,
     submitExistingUserModalDialog,

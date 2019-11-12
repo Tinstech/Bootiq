@@ -11,7 +11,7 @@ interface OrderDetailPageProps {
 
 const OrderDetailPage = (): OrderDetailPageProps => {
   const cardOrderHistoryTab = () => {
-    return cy.get('#basicInformationBox').next('.column-right');
+    return cy.get('.table-striped');
   };
 
   const sendOrderButton = () => {
@@ -89,7 +89,7 @@ const OrderDetailPage = (): OrderDetailPageProps => {
     checkOrderHistoryTabHasNoCompletedStatus();
     openProcessOrderModalButton().click();
     submitProcessingModalButton().click({ force: true });
-    checkOrderHistoryTabHasNoCompletedStatus();
+    checkOrderHistoryTabHasCompletedStatus();
   };
 
   return {
