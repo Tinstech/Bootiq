@@ -8,5 +8,8 @@ export default {
   orderCreateEntriesPage: '/pages/orders/orderCreateEntries',
   orderDetailPage: '/pages/orders/orderDetail',
   orderListPage: '/pages/orders/orderList.jsf',
-  loginPage: '/login.jsf'
+  loginPage: '/login.jsf',
+  personalDataPage: '/ordering/personal-data',
+  additionalProductsPage: '/ordering/additional-products',
+  overviewPage: '/ordering/overview'
 };

@@ -21,6 +21,7 @@ const OrderCreatePage = (): OrderCreatePageProps => {
     cardIssuerSubmitButton().click();
     cy.pathEq(Cypress.env('NCDB_BASE_URL'), routes.actionSelectionPage);
   };
+
   return { goToActionSelectionPage };
 };
 

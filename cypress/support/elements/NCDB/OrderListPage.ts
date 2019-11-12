@@ -31,6 +31,7 @@ const OrderListPage = (): OrderListPageProps => {
     newestOrderDetail().click();
     cy.pathEq(Cypress.env('NCDB_BASE_URL'), routes.orderDetailPage);
   };
+
   return { deleteLastOrderAndCardHolder, openNewestOrderDetail };
 };
 

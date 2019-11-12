@@ -11,10 +11,12 @@ const CardTypeSelectionPage = (): CardTypeSelectionPageProps => {
       .find('a')
       .eq(0);
   };
+
   const goToCardHolderSelectionPage = () => {
     chooseISICCardButton().click();
     cy.pathEq(Cypress.env('NCDB_BASE_URL'), routes.cardHolderSelectionPage);
   };
+
   return { goToCardHolderSelectionPage };
 };
 
