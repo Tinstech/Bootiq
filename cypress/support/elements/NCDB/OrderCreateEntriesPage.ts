@@ -2,22 +2,13 @@ import routes from '../../testRoutes';
 
 interface OrderCreateEntriesPageProps {
   goToOrderDetailPage: () => void;
-  filterTestedItem: () => void;
   selectFilteredItem: () => void;
+  checkSelectedItemsListContainsSelectedUsename: () => void;
+  goToCreateInsuranceEntriesPage: () => void;
+  sortNewestAvailableItem: () => void;
 }
 
 const OrderCreateEntriesPage = (): OrderCreateEntriesPageProps => {
-  const filterSurnameInput = () => {
-    return cy.get('#filter-form\\:surname');
-  };
-  const filterDateOfBirthInput = () => {
-    return cy.get('#filter-form\\:birthDate_input');
-  };
-
-  const filterButton = () => {
-    return cy.get('#filter-form\\:j_id_7f');
-  };
-
   const cardSelectedEntriesButton = () => {
     return cy.get('#submitForm').find('a');
   };
@@ -33,6 +24,11 @@ const OrderCreateEntriesPage = (): OrderCreateEntriesPageProps => {
   const goToOrderDetailPage = () => {
     cardSelectedEntriesButton().click({ force: true });
     cy.pathEq(Cypress.env('NCDB_BASE_URL'), routes.orderDetailPage);
+  };
+
+  const goToCreateInsuranceEntriesPage = () => {
+    cardSelectedEntriesButton().click({ force: true });
+    cy.pathEq(Cypress.env('NCDB_BASE_URL'), routes.orderCreateInsuranceEntries);
   };
 
   const checkEntriesTableContainsTestedItem = () => {
@@ -51,11 +47,35 @@ const OrderCreateEntriesPage = (): OrderCreateEntriesPageProps => {
     return cy.get('#entriesSelectForm\\:cardOwnerList\\:j_id_7k').find('a');
   };
 
-  const filterTestedItem = () => {
-    filterDateOfBirthInput().type('29.5.1988');
-    filterSurnameInput().type('Test');
-    filterButton().click();
-    checkEntriesTableContainsTestedItem();
+  const availableItemsListFirstUsername = () => {
+    return cy
+      .get('#entriesSelectForm\\:cardOwnerList_data')
+      .find('tr[data-ri="0"]')
+      .find('td')
+      .eq(1);
+  };
+
+  const addFirstItemFromCardOwnerList = () => {
+    cy.get('#entriesSelectForm\\:cardOwnerList\\:0\\:plusButton')
+      .find('a')
+      .click({
+        force: true,
+      });
+  };
+
+  const checkSelectedItemsListContainsSelectedUsename = () => {
+    addFirstItemFromCardOwnerList();
+    availableItemsListFirstUsername()
+      .invoke('text')
+      .then($txt => {
+        const username1 = $txt.toString().trim();
+        cy.get('#chosenItemsForm\\:j_id_65_data').should('contain', username1);
+      });
+  };
+  const sortNewestAvailableItem = () => {
+    cy.get('#entriesSelectForm\\:cardOwnerList\\:j_id_7s')
+      .click({ force: true })
+      .wait(1000);
   };
 
   const selectFilteredItem = () => {
@@ -63,8 +83,13 @@ const OrderCreateEntriesPage = (): OrderCreateEntriesPageProps => {
     checkSelectedItemsTableContainsTestedItem();
   };
 
-  return { goToOrderDetailPage, filterTestedItem, selectFilteredItem };
+  return {
+    goToOrderDetailPage,
+    selectFilteredItem,
+    sortNewestAvailableItem,
+    checkSelectedItemsListContainsSelectedUsename,
+    goToCreateInsuranceEntriesPage,
+  };
 };
 
 export { OrderCreateEntriesPage };
-

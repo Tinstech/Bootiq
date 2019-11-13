@@ -45,6 +45,7 @@ const OrderDetailPage = (): OrderDetailPageProps => {
   };
 
   const checkOrderHistoryTabHasNoOrderedStatus = () => {
+    cardOrderHistoryTab().should('contain', 'Draft');
     cardOrderHistoryTab().should('not.contain', 'Ordered');
   };
 
@@ -100,7 +101,7 @@ const OrderDetailPage = (): OrderDetailPageProps => {
     checkOrderHistoryTabHasOrderedStatus,
     checkOrderHistoryTabHasNoCompletedStatus,
     processOrder,
-    checkOrderHistoryTabHasCompletedStatus
+    checkOrderHistoryTabHasCompletedStatus,
   };
 };
 

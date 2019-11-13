@@ -2,10 +2,10 @@ import {
   AdditionalProductsPage,
   CardTypeSelectionPage,
   OverviewPage,
-  PersonalDataPage
+  PersonalDataPage,
 } from '../../support/elements/OO2';
 
-describe('New ISIC card order', () => {
+describe('New ISIC card nd Insurance order', () => {
   beforeEach('preserve cookies', () => {
     Cypress.Cookies.preserveOnce('oo_locale', 'PHPSESSID');
   });
@@ -22,12 +22,12 @@ describe('New ISIC card order', () => {
       .uploadFile(
         'snoop_dogg.jpg',
         '#documentupload_proof_of_study',
-        'image/jpg'
+        'image/jpg',
       )
       .uploadFile(
         'snoop_dogg.jpg',
         '#documentupload_identity_card_applicant',
-        'image/jpg'
+        'image/jpg',
       );
     PersonalDataPage().fillInAndSubmitPersonalDataForm();
   });

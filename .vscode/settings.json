@@ -5,6 +5,5 @@
   },
   "typescript.tsdk": "node_modules/typescript/lib",
   "editor.formatOnSave": true,
-  "editor.tabSize": 2,
-  "prettier.singleQuote": true
+  "editor.tabSize": 2
 }
