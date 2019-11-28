@@ -4,7 +4,7 @@ interface LogInPageProps {
 }
 
 const LogInPage = (): LogInPageProps => {
-  const USER_ER_CREDENTIAL = Cypress.env('NCDB_USER_ER_CREDENTIAL');
+  const USER_ER_CREDENTIAL = Cypress.env('ER_USER_CREDENTIAL');
   const USER_PC_CREDENTIAL = Cypress.env('NCDB_USER_PC_CREDENTIAL');
   const BASE_URL = Cypress.env('NCDB_BASE_URL');
 

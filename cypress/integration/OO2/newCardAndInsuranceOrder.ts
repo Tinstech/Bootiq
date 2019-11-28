@@ -1,9 +1,12 @@
 import {
   AdditionalProductsPage,
+  CardOrdersPage,
   CardTypeSelectionPage,
+  LogInOO2Page,
   OverviewPage,
   PersonalDataPage,
 } from '../../support/elements/OO2';
+import routes from '../../support/testRoutes';
 
 describe('New ISIC card nd Insurance order', () => {
   beforeEach('preserve cookies', () => {
@@ -48,5 +51,16 @@ describe('New ISIC card nd Insurance order', () => {
       .eq(1)
       .find('h2')
       .should('contain', 'successful');
+  });
+
+  it('log in as admin', () => {
+    Cypress.on('uncaught:exception', (err, runnable) => {
+      return false;
+    });
+    cy.visit(`${Cypress.env('OO2_BASE_URL')}${routes.adminOO2LoginPage}`);
+    LogInOO2Page().logInOO2Admin();
+  });
+  it('mark as paid order and validate order', () => {
+    CardOrdersPage().orderExport();
   });
 });
