@@ -33,9 +33,11 @@ install:
 
 # job that runs after "install" job finishes
 # NPM dependencies and Cypress binary should be already installed
-cypress-e2e:
+cypress-e2e:test:
   image: cypress/base:10
   stage: test
+  environment:
+    name: test
   script:
     # the free cypress record limit is 500 recorded tests per month
     # if we upgrade our billing plan to 99$/month we can implement
