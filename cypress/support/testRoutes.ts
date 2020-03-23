@@ -15,4 +15,5 @@ export default {
   orderCreateInsuranceEntries: '/pages/orders/orderCreateInsuranceEntries',
   adminCardOrdersDetail: '/administration/cardOrders',
   adminOO2LoginPage: '/administration/security/login',
+  adminDMLoginPage: '/security/login',
 };

@@ -8,7 +8,7 @@ import {
 } from '../../support/elements/OO2';
 import routes from '../../support/testRoutes';
 
-describe('New ISIC card nd Insurance order', () => {
+describe('New ISIC card and Insurance order', () => {
   beforeEach('preserve cookies', () => {
     Cypress.Cookies.preserveOnce('oo_locale', 'PHPSESSID');
   });
