@@ -38,19 +38,8 @@ describe('New ISIC card and Insurance order', () => {
     AdditionalProductsPage().goToOverviewPage();
   });
   it('fill in delivery form, choose payment, proceed to Payment status page', () => {
-    OverviewPage().fillInDeliveryMethod();
     OverviewPage().choosePaymentMethod();
     OverviewPage().submitOverviewPageForm();
-  });
-  it('proceed to Payment Success', () => {
-    cy.url().then(url => {
-      const urlPaymentSuccess = url.replace('failure', 'success');
-      cy.visit(urlPaymentSuccess);
-    });
-    cy.get('.contentBoxContent')
-      .eq(1)
-      .find('h2')
-      .should('contain', 'successful');
   });
 
   it('log in as admin', () => {

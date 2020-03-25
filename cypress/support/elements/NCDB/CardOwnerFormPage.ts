@@ -19,7 +19,7 @@ const CardOwnerFormPage = (): CardOwnerFormPageProps => {
     return cy.get('#birthDate_input');
   };
   const organizationNameInput = () => {
-    return cy.get('#j_id_9h\\:organizationAutocomplete_input');
+    return cy.get('#j_id_9n\\:organizationAutocomplete_input');
   };
   const organizationFormButton = () => {
     return cy.get('.image-button-text').contains('Save');
