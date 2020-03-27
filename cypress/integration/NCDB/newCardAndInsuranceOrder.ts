@@ -1,16 +1,4 @@
-import {
-  ActionSelectionPage,
-  CardHolderSelectionPage,
-  CardOwnerFormPage,
-  CardTypeSelectionPage,
-  DashboardPage,
-  LogInPage,
-  OrderCreateEntriesPage,
-  OrderCreateInsuranceEntriesPage,
-  OrderCreatePage,
-  OrderDetailPage,
-  OrderListPage,
-} from '../../support/elements/NCDB';
+import { ActionSelectionPage, CardHolderSelectionPage, CardOwnerFormPage, CardTypeSelectionPage, DashboardPage, LogInPage, OrderCreateEntriesPage, OrderCreateInsuranceEntriesPage, OrderCreatePage, OrderDetailPage, OrderListPage } from '../../support/elements/NCDB';
 
 describe('New ISIC card and Insurance order', () => {
   beforeEach('preserve cookies', () => {
@@ -61,6 +49,7 @@ describe('New ISIC card and Insurance order', () => {
     });
     context('Process order as Personalization center user ', () => {
       it('sign in as Personalization Center User', () => {
+        cy.visit(Cypress.env('NCDB_BASE_URL'));
         LogInPage().logInPCUser();
       });
       it('Finish order processing', () => {
