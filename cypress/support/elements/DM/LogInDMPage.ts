@@ -1,3 +1,5 @@
+import routes from '../../testRoutes';
+
 interface LogInDMPageProps {
   logInDMAdmin: () => void;
 }
@@ -21,10 +23,10 @@ const LogInDMPage = (): LogInDMPageProps => {
     usernameField().type(ADMIN_CREDENTIAL);
     passwordField().type(ADMIN_CREDENTIAL);
     signInButton().click();
+    cy.pathEq(Cypress.env('DM_BASE_URL'), routes.providersPage);
   };
 
   return { logInDMAdmin };
 };
 
 export { LogInDMPage };
-

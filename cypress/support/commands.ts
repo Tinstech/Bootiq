@@ -44,8 +44,8 @@ export const logInUser = (productURL: string, usercredential: string) => {
     .get('#j_password')
     .type(usercredential)
     .get('#j_id_1y')
-    .click()
-    .pathEq(productURL, routes.dashboardPage);
+    .click();
+  // .pathEq(productURL, routes.dashboardPage);
 };
 
 export const signOut = (productURL: string) => {
