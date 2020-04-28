@@ -16,7 +16,7 @@ const OrderCreatePage = (): OrderCreatePageProps => {
   };
 
   const goToActionSelectionPage = () => {
-    cardIssuerInput().type('Online ordering');
+    cardIssuerInput().type('Online Ordering');
     onlineOrderingOption().click({ force: true });
     cardIssuerSubmitButton().click();
     cy.pathEq(Cypress.env('NCDB_BASE_URL'), routes.actionSelectionPage);

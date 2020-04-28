@@ -16,4 +16,6 @@ export default {
   adminCardOrdersDetail: '/administration/cardOrders',
   adminOO2LoginPage: '/administration/security/login',
   adminDMLoginPage: '/security/login',
+  providersPage: '/providers/search',
+  providersDetail: '/providers/detail',
 };
