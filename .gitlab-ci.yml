@@ -8,6 +8,7 @@ stages:
 variables:
   npm_config_cache: '$CI_PROJECT_DIR/.npm'
   CYPRESS_CACHE_FOLDER: '$CI_PROJECT_DIR/cache/Cypress'
+  REQUIRED_ENVIRONMENT: "test"
 
 # cache using branch name
 # https://gitlab.com/help/ci/caching/index.md
@@ -24,6 +25,7 @@ install:
   stage: build
 
   script:
+    - echo "Env variable is ${REQUIRED_ENVIRONMENT}"
     - yarn install
     # show where the Cypress test runner binaries are cached
     - $(npm bin)/cypress cache path
