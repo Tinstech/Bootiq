@@ -117,12 +117,12 @@ Finally, commands, that are used throughout all products, such as URL check or f
 For more info on project setup and architecture contact authors:[Pavlo Kryshenyk](https://gitlab.bootiq.io/pavlokryshenyk)
 and [František Kryzl](https://gitlab.bootiq.io/frantisekkryzl).
 
-# Running cypress as downstream (multi-project pipeline)
-To run E2E tests for your application of AlivePlatform, implement bridge job to trigger downstream:
+# Running cypress as downstream (multi-project pipeline) from your project
+To run E2E tests for your application of AlivePlatform, implement bridge job to trigger downstream into YOUR project:
 
 ```yaml
 E2E Tests:
-  stage: deploy
+  stage: your_choice
   variables:
     # Multiple APPLICATION_XY variable can be used or just one single, depends on use case.
     # If none APPLICATION_XY variable is used, all test will be triggered.
@@ -137,4 +137,7 @@ E2E Tests:
     branch: GTSALIVE-1299-multiproject-pipeline
     strategy: depend
 ```
+
+**Don't forget to add another CI job if adding integration for new Application!**
+
 For more information about Gitlab CI implementation contact [Jan Dominik](https://gitlab.bootiq.io/jandominik).
