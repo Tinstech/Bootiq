@@ -9,6 +9,7 @@ cypress/screenshots
 
 # misc
 .DS_Store
+.idea/
 
 yarn-debug.log*
 yarn-error.log*

@@ -33,11 +33,29 @@ install:
 
 # job that runs after "install" job finishes
 # NPM dependencies and Cypress binary should be already installed
-cypress-e2e:test:
+# This is extendable body of job
+.cypress:
   image: cypress/base:10
   stage: test
+  variables:
+    DYNAMIC_ENVIRONMENT: $([[ -z "${REQUIRED_ENVIRONMENT}" ]] && echo "test" || echo "${REQUIRED_ENVIRONMENT}")
   environment:
-    name: test
+    name: $DYNAMIC_ENVIRONMENT
+  artifacts:
+    expire_in: 1 week
+    when: on_failure
+    paths:
+      - cypress/screenshots
+      - cypress/videos
+
+# Job which should run in typical way by committing directly in this repository
+cypress-e2e:test:
+  extends: .cypress
+  except:
+    variables:
+      - $DISABLE_ALL_TESTS == "true"
+  before_script:
+    - echo "Running test against environment ${DYNAMIC_ENVIRONMENT}."
   script:
     # the free cypress record limit is 500 recorded tests per month
     # if we upgrade our billing plan to 99$/month we can implement
@@ -46,9 +64,28 @@ cypress-e2e:test:
     # - $(npm bin)/cypress run --record
     # record key for this project is: 974ddd92-4fbd-4a3e-9b1e-67ee7e0ab426
     - $(npm bin)/cypress run
-  artifacts:
-    expire_in: 1 week
-    when: on_failure
-    paths:
-      - cypress/screenshots
-      - cypress/videos
+
+# Jobs which should run by multiproject-pipeline from another projects running only exact group of tests
+cypress-e2e:test:dm:
+  extends: .cypress
+  only:
+    variables:
+      - $APPLICATION_DM == "true"
+  script:
+    - $(npm bin)/cypress run --spec "cypress/integration/DM/**/*"
+
+cypress-e2e:test:ncdb:
+  extends: .cypress
+  only:
+    variables:
+      - $APPLICATION_NCDB == "true"
+  script:
+    - $(npm bin)/cypress run --spec "cypress/integration/NCDB/**/*"
+
+cypress-e2e:test:oo2:
+  extends: .cypress
+  only:
+    variables:
+      - $APPLICATION_OO2 == "true"
+  script:
+    - $(npm bin)/cypress run --spec "cypress/integration/OO2/**/*"
