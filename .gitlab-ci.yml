@@ -25,7 +25,6 @@ install:
   stage: build
 
   script:
-    - echo "$REQUIRED_ENVIRONMENT"
     - yarn install
     # show where the Cypress test runner binaries are cached
     - $(npm bin)/cypress cache path
