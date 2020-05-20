@@ -68,7 +68,7 @@ const ProvidersPage = (): ProvidersPageProps => {
   };
 
   const deleteProviderButton = () => {
-    return cy.get('#shortcut-button-5');
+    return cy.get('#deleteProvider');
   };
 
   const newDiscountProvider = () => {
