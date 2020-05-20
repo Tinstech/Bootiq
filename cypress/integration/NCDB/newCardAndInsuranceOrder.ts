@@ -1,6 +1,22 @@
-import { ActionSelectionPage, CardHolderSelectionPage, CardOwnerFormPage, CardTypeSelectionPage, DashboardPage, LogInPage, OrderCreateEntriesPage, OrderCreateInsuranceEntriesPage, OrderCreatePage, OrderDetailPage, OrderListPage } from '../../support/elements/NCDB';
+import {
+  ActionSelectionPage,
+  CardHolderSelectionPage,
+  CardOwnerFormPage,
+  CardTypeSelectionPage,
+  DashboardPage,
+  LogInPage,
+  OrderCreateEntriesPage,
+  // OrderCreateInsuranceEntriesPage,
+  OrderCreatePage,
+  OrderDetailPage,
+  OrderListPage,
+} from '../../support/elements/NCDB';
 
 describe('New ISIC card and Insurance order', () => {
+  before('Login', () => {
+    cy.visit(Cypress.env('NCDB_BASE_URL'));
+    LogInPage().logInERUser();
+  });
   beforeEach('preserve cookies', () => {
     Cypress.Cookies.preserveOnce('JSESSIONID', 'ncdb_locale');
   });
@@ -9,10 +25,10 @@ describe('New ISIC card and Insurance order', () => {
   });
   context('New ISIC card order', () => {
     context('Log in as NCDB user and proceed to new Card owner form', () => {
-      it('log in, go to Dashboard', () => {
-        cy.visit(Cypress.env('NCDB_BASE_URL'));
-        LogInPage().logInERUser();
-      });
+      // it('log in, go to Dashboard', () => {
+      //   cy.visit(Cypress.env('NCDB_BASE_URL'));
+      //   LogInPage().logInERUser();
+      //});
       it('go to Create New Orders page', () => {
         DashboardPage().goToCreateNewOrdersPage();
       });
@@ -57,36 +73,42 @@ describe('New ISIC card and Insurance order', () => {
         OrderListPage().openNewestOrderDetail();
         OrderDetailPage().processOrder();
         cy.signOut(Cypress.env('NCDB_BASE_URL'));
+        cy.visit(Cypress.env('NCDB_BASE_URL'));
+        LogInPage().logInERUser();
+        DashboardPage().openOrderListPage();
+        OrderDetailPage().finishOrderProcessing();
+        cy.signOut(Cypress.env('NCDB_BASE_URL'));
       });
     });
   });
-  context('New Insurance order ', () => {
-    it('log in, go to Dashboard', () => {
-      LogInPage().logInERUser();
-    });
-    it('go to Create New Orders page', () => {
-      DashboardPage().goToCreateNewOrdersPage();
-    });
-    it('go to Action Selection page', () => {
-      OrderCreatePage().goToActionSelectionPage();
-    });
-    it('go to Card Type Selection page', () => {
-      ActionSelectionPage().goToOrderCreateEntriesPage();
-    });
-    it('add Selected Entries and proceed to Order Insurance Entries page', () => {
-      OrderCreateEntriesPage().sortNewestAvailableItem();
-      OrderCreateEntriesPage().checkSelectedItemsListContainsSelectedUsename();
-      OrderCreateEntriesPage().goToCreateInsuranceEntriesPage();
-    });
-    it('fill in User data, proceed to Order Detail Page', () => {
-      OrderCreateInsuranceEntriesPage().fillInUserData();
-      OrderCreateInsuranceEntriesPage().goToOrderDetailPage();
-    });
-    it('send order, process order ', () => {
-      OrderDetailPage().checkOrderHistoryTabHasNoOrderedStatus();
-      OrderDetailPage().sendOrder();
-      OrderDetailPage().checkOrderHistoryTabHasOrderedStatus();
-      OrderDetailPage().processOrder();
-    });
-  });
 });
+//   context('New Insurance order ', () => {
+//     it('log in, go to Dashboard', () => {
+//       LogInPage().logInERUser();
+//     });
+//     it('go to Create New Orders page', () => {
+//       DashboardPage().goToCreateNewOrdersPage();
+//     });
+//     it('go to Action Selection page', () => {
+//       OrderCreatePage().goToActionSelectionPage();
+//     });
+//     it('go to Card Type Selection page', () => {
+//       ActionSelectionPage().goToOrderCreateEntriesPage();
+//     });
+//     it('add Selected Entries and proceed to Order Insurance Entries page', () => {
+//       OrderCreateEntriesPage().sortNewestAvailableItem();
+//       OrderCreateEntriesPage().checkSelectedItemsListContainsSelectedUsename();
+//       OrderCreateEntriesPage().goToCreateInsuranceEntriesPage();
+//     });
+//     it('fill in User data, proceed to Order Detail Page', () => {
+//       OrderCreateInsuranceEntriesPage().fillInUserData();
+//       OrderCreateInsuranceEntriesPage().goToOrderDetailPage();
+//     });
+//     it('send order, process order ', () => {
+//       OrderDetailPage().checkOrderHistoryTabHasNoOrderedStatus();
+//       OrderDetailPage().sendOrder();
+//       OrderDetailPage().checkOrderHistoryTabHasOrderedStatus();
+//       OrderDetailPage().processOrder();
+//     });
+//   });
+// });

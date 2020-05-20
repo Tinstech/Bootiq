@@ -7,7 +7,7 @@ interface OrderCreateInsuranceEntriesPageProps {
 
 const OrderCreateInsuranceEntriesPage = (): OrderCreateInsuranceEntriesPageProps => {
   const addressInputsPlaceholder = () => {
-    return cy.get('#insuranceEntriesTable\\:0\\:j_id_5f').find('span');
+    return cy.get('#insuranceEntriesTable\\:0\\:j_id_5f');
   };
 
   const addressLine1Input = () => {
@@ -27,7 +27,7 @@ const OrderCreateInsuranceEntriesPage = (): OrderCreateInsuranceEntriesPageProps
   };
 
   const emailInputPlaceholder = () => {
-    return cy.get('#insuranceEntriesTable\\:0\\:j_id_5t').find('span');
+    return cy.get('#insuranceEntriesTable\\:0\\:j_id_5t');
   };
 
   const emailInput = () => {
@@ -35,7 +35,7 @@ const OrderCreateInsuranceEntriesPage = (): OrderCreateInsuranceEntriesPageProps
   };
 
   const birthNumberInputPlaceholder = () => {
-    return cy.get('#insuranceEntriesTable\\:0\\:j_id_62').find('span');
+    return cy.get('#insuranceEntriesTable\\:0\\:j_id_62');
   };
 
   const birthNumberInput = () => {
@@ -51,7 +51,7 @@ const OrderCreateInsuranceEntriesPage = (): OrderCreateInsuranceEntriesPageProps
     addressLine1Input().type('Buckingham');
     addressLine2Input().type('Palace');
     addressCityInput().type('London');
-    addressZipCodeInput().type('SW1A 1AA');
+    //addressZipCodeInput().type('14200');
   };
 
   const fillInEmail = () => {

@@ -7,6 +7,7 @@ interface OrderDetailPageProps {
   processOrder: () => void;
   checkOrderHistoryTabHasNoCompletedStatus: () => void;
   checkOrderHistoryTabHasCompletedStatus: () => void;
+  finishOrderProcessing: () => void;
 }
 
 const OrderDetailPage = (): OrderDetailPageProps => {
@@ -27,13 +28,11 @@ const OrderDetailPage = (): OrderDetailPageProps => {
   };
 
   const openProcessOrderModalButton = () => {
-    return cy
-      .get('#entriesForm\\:orderEntryList\\:0\\:j_id_f1')
-      .find('.icon-process-small');
+    return cy.get('#entriesForm\\:orderEntryList\\:0\\:j_id_f1');
   };
 
   const submitProcessingModalButton = () => {
-    return cy.get('#j_id_qk');
+    return cy.get('.buttons-bar .ui-button-text');
   };
 
   const prepareForProcessingButton = () => {
@@ -42,6 +41,12 @@ const OrderDetailPage = (): OrderDetailPageProps => {
 
   const markPhotosAsAdjustedButton = () => {
     return cy.get('#j_id_l3\\:j_id_mg\\:link');
+  };
+
+  const confirmDeliveryButton = () => {
+    return cy.get(
+      'div.content-box:nth-child(8) div.content-box-content div.ui-datatable.ui-widget:nth-child(1) div.ui-datatable-tablewrapper tbody.ui-datatable-data.ui-widget-content:nth-child(2) tr.ui-widget-content.ui-datatable-even:nth-child(1) td.action-column-4:nth-child(7) a:nth-child(3) > span:nth-child(1)',
+    );
   };
 
   const checkOrderHistoryTabHasNoOrderedStatus = () => {
@@ -75,9 +80,7 @@ const OrderDetailPage = (): OrderDetailPageProps => {
   const markPhotosAsAdjusted = () => {
     processOrderButton().click();
     markPhotosAsAdjustedButton().click();
-    cy.get('#globalMessages')
-      .should('contain', '1')
-      .and('contain', 'updated');
+    cy.get('#globalMessages').should('contain', '1').and('contain', 'updated');
   };
 
   const prepareOrderForProcessing = () => {
@@ -89,8 +92,17 @@ const OrderDetailPage = (): OrderDetailPageProps => {
   const processOrder = () => {
     checkOrderHistoryTabHasNoCompletedStatus();
     openProcessOrderModalButton().click();
+    //cy.server();
+    //cy.route('/pages/orders/**').as('xhr');
+    cy.wait(5000);
     submitProcessingModalButton().click({ force: true });
-    checkOrderHistoryTabHasCompletedStatus();
+    cy.wait(10000);
+    //checkOrderHistoryTabHasCompletedStatus();
+  };
+
+  const finishOrderProcessing = () => {
+    cy.reload();
+    confirmDeliveryButton().click();
   };
 
   return {
@@ -102,6 +114,7 @@ const OrderDetailPage = (): OrderDetailPageProps => {
     checkOrderHistoryTabHasNoCompletedStatus,
     processOrder,
     checkOrderHistoryTabHasCompletedStatus,
+    finishOrderProcessing,
   };
 };
 
