@@ -54,12 +54,20 @@ const DiscountsPage = (): DiscountsPageProps => {
     return cy.get('.custom-combobox-toggle.ui-corner-right');
   };
 
-  const AvaibleAtAllBranchesCheckbox = () => {
+  const avaibleAtAllBranchesCheckbox = () => {
     return cy.get('#discount_dynamicBranchLinking');
   };
 
-  const example = () => {
-    return cy.get('.ui-menu-item:nth-child(2)').first();
+  const categoryDropdownBoxSelect = () => {
+    return cy.get('.ui-autocomplete .ui-menu-item:first-child');
+  };
+
+  const saveButton = () => {
+    return cy.get('#shortcut-button-0');
+  };
+
+  const deleteProviderButton = () => {
+    return cy.get('#deleteProvider');
   };
 
   const newDiscount = () => {
@@ -77,11 +85,10 @@ const DiscountsPage = (): DiscountsPageProps => {
     cardTypesCheckbox5().click();
     discountValidSinceInput().type('01.04.2020');
     categoryDropdownBox().click({ force: true });
-    example().click();
-    // cy.get('#discountCategory')
-    //   .select('Doprava', { force: true })
-    //   .should('have.value', '1');
-    AvaibleAtAllBranchesCheckbox().click();
+    categoryDropdownBoxSelect().click();
+    avaibleAtAllBranchesCheckbox().click();
+    saveButton().click();
+    deleteProviderButton().click();
   };
 
   return { newDiscount };

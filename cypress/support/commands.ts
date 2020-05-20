@@ -20,7 +20,7 @@ declare global {
 }
 
 export const pathEq = (productURL: string, path: string) => {
-  cy.location({ timeout: 5000 }).should(loc => {
+  cy.location({ timeout: 5000 }).should((loc) => {
     expect(loc.href).to.include(productURL + path);
   });
 };
@@ -30,7 +30,7 @@ export const uploadFile = (
   input: string,
   mimeType: string,
 ) => {
-  cy.fixture(filename, 'base64').then(fileContent => {
+  cy.fixture(filename, 'base64').then((fileContent) => {
     cy.get(input).upload(
       { fileContent, fileName: filename, mimeType: mimeType },
       { subjectType: 'input' },
@@ -44,8 +44,8 @@ export const logInUser = (productURL: string, usercredential: string) => {
     .get('#j_password')
     .type(usercredential)
     .get('#j_id_1y')
-    .click();
-  // .pathEq(productURL, routes.dashboardPage);
+    .click()
+    .pathEq(productURL, routes.dashboardPage);
 };
 
 export const signOut = (productURL: string) => {

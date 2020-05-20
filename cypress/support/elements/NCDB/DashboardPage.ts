@@ -11,6 +11,7 @@ const DashboardPage = (): DashboardPageProps => {
   };
 
   const goToCreateNewOrdersPage = () => {
+    cy.reload();
     orderCreateButton().click();
     cy.pathEq(Cypress.env('NCDB_BASE_URL'), routes.orderCreatePage);
   };
