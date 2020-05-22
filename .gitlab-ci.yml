@@ -65,7 +65,7 @@ cypress-e2e:test:
     # to run tests with recording use:
     # - $(npm bin)/cypress run --record
     # record key for this project is: 974ddd92-4fbd-4a3e-9b1e-67ee7e0ab426
-    - $(npm bin)/cypress run
+    - $(npm bin)/cypress run --browser chrome
 
 # Jobs which should run by multiproject-pipeline from another projects running only exact group of tests
 cypress-e2e:test:dm:
@@ -74,7 +74,7 @@ cypress-e2e:test:dm:
     variables:
       - $APPLICATION_DM == "true"
   script:
-    - $(npm bin)/cypress run --spec "cypress/integration/DM/**/*"
+    - $(npm bin)/cypress run --browser chrome --spec "cypress/integration/DM/**/*"
 
 cypress-e2e:test:ncdb:
   extends: .cypress
@@ -82,7 +82,7 @@ cypress-e2e:test:ncdb:
     variables:
       - $APPLICATION_NCDB == "true"
   script:
-    - $(npm bin)/cypress run --spec "cypress/integration/NCDB/**/*"
+    - $(npm bin)/cypress run --browser chrome --spec "cypress/integration/NCDB/**/*"
 
 cypress-e2e:test:oo2:
   extends: .cypress
@@ -90,4 +90,4 @@ cypress-e2e:test:oo2:
     variables:
       - $APPLICATION_OO2 == "true"
   script:
-    - $(npm bin)/cypress run --spec "cypress/integration/OO2/**/*"
+    - $(npm bin)/cypress run --browser chrome --spec "cypress/integration/OO2/**/*"
