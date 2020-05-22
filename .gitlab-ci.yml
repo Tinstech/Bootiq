@@ -36,7 +36,7 @@ install:
 # NPM dependencies and Cypress binary should be already installed
 # This is extendable body of job
 .cypress:
-  image: cypress/base:10
+  image: cypress/browsers:chrome69
   stage: test
   environment:
     name: $REQUIRED_ENVIRONMENT
