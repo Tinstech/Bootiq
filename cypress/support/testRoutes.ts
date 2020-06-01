@@ -18,4 +18,5 @@ export default {
   adminDMLoginPage: '/security/login',
   providersPage: '/providers/search',
   providersDetail: '/providers/detail',
+  validitySelection: '/pages/orders/wizard/validitySelection',
 };

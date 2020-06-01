@@ -6,7 +6,6 @@ import {
   DashboardPage,
   LogInPage,
   OrderCreateEntriesPage,
-  // OrderCreateInsuranceEntriesPage,
   OrderCreatePage,
   OrderDetailPage,
   OrderListPage,
@@ -81,34 +80,33 @@ describe('New ISIC card and Insurance order', () => {
       });
     });
   });
+  //   context('New Insurance order ', () => {
+  //     it('log in, go to Dashboard', () => {
+  //       LogInPage().logInERUser();
+  //     });
+  //     it('go to Create New Orders page', () => {
+  //       DashboardPage().goToCreateNewOrdersPage();
+  //     });
+  //     it('go to Action Selection page', () => {
+  //       OrderCreatePage().goToActionSelectionPage();
+  //     });
+  //     it('go to Card Type Selection page', () => {
+  //       ActionSelectionPage().goToOrderCreateEntriesPage();
+  //     });
+  //     it('add Selected Entries and proceed to Order Insurance Entries page', () => {
+  //       OrderCreateEntriesPage().sortNewestAvailableItem();
+  //       OrderCreateEntriesPage().checkSelectedItemsListContainsSelectedUsename();
+  //       OrderCreateEntriesPage().goToCreateInsuranceEntriesPage();
+  //     });
+  //     it('fill in User data, proceed to Order Detail Page', () => {
+  //       OrderCreateInsuranceEntriesPage().fillInUserData();
+  //       OrderCreateInsuranceEntriesPage().goToOrderDetailPage();
+  //     });
+  //     it('send order, process order ', () => {
+  //       OrderDetailPage().checkOrderHistoryTabHasNoOrderedStatus();
+  //       OrderDetailPage().sendOrder();
+  //       OrderDetailPage().checkOrderHistoryTabHasOrderedStatus();
+  //       OrderDetailPage().processOrder();
+  //     });
+  //   });
 });
-//   context('New Insurance order ', () => {
-//     it('log in, go to Dashboard', () => {
-//       LogInPage().logInERUser();
-//     });
-//     it('go to Create New Orders page', () => {
-//       DashboardPage().goToCreateNewOrdersPage();
-//     });
-//     it('go to Action Selection page', () => {
-//       OrderCreatePage().goToActionSelectionPage();
-//     });
-//     it('go to Card Type Selection page', () => {
-//       ActionSelectionPage().goToOrderCreateEntriesPage();
-//     });
-//     it('add Selected Entries and proceed to Order Insurance Entries page', () => {
-//       OrderCreateEntriesPage().sortNewestAvailableItem();
-//       OrderCreateEntriesPage().checkSelectedItemsListContainsSelectedUsename();
-//       OrderCreateEntriesPage().goToCreateInsuranceEntriesPage();
-//     });
-//     it('fill in User data, proceed to Order Detail Page', () => {
-//       OrderCreateInsuranceEntriesPage().fillInUserData();
-//       OrderCreateInsuranceEntriesPage().goToOrderDetailPage();
-//     });
-//     it('send order, process order ', () => {
-//       OrderDetailPage().checkOrderHistoryTabHasNoOrderedStatus();
-//       OrderDetailPage().sendOrder();
-//       OrderDetailPage().checkOrderHistoryTabHasOrderedStatus();
-//       OrderDetailPage().processOrder();
-//     });
-//   });
-// });
