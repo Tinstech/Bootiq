@@ -8,7 +8,7 @@ import {
   OrderCreateEntriesPage,
   OrderCreatePage,
   OrderDetailPage,
-  OrderListPage,
+  OrderListPage
 } from '../../support/elements/NCDB';
 
 describe('New ISIC card and Insurance order', () => {
@@ -22,11 +22,14 @@ describe('New ISIC card and Insurance order', () => {
   after('', () => {
     cy.clearCookies().signOut(Cypress.env('NCDB_BASE_URL'));
   });
+
+
+
   context('New ISIC card order', () => {
     context('Log in as NCDB user and proceed to new Card owner form', () => {
-      // it('log in, go to Dashboard', () => {
-      //   cy.visit(Cypress.env('NCDB_BASE_URL'));
-      //   LogInPage().logInERUser();
+      //it('log in, go to Dashboard', () => {
+      //cy.visit(Cypress.env('NCDB_BASE_URL'));
+      //LogInPage().logInERUser();
       //});
       it('go to Create New Orders page', () => {
         DashboardPage().goToCreateNewOrdersPage();
@@ -80,6 +83,15 @@ describe('New ISIC card and Insurance order', () => {
       });
     });
   });
+
+
+
+
+
+
+  // zakomentovany jeho druhy test ktory vlozit do prveho testu...
+
+
   //   context('New Insurance order ', () => {
   //     it('log in, go to Dashboard', () => {
   //       LogInPage().logInERUser();

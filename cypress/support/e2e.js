@@ -1,6 +1,2 @@
 import './commands';
-
-
-
-
-
+import './log'
